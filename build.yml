@@ -1,0 +1,17 @@
+name: Build EBOOT
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/pspdev/pspdev:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: make
+      - name: Upload EBOOT
+        uses: actions/upload-artifact@v4
+        with:
+          name: LowPolySoul-EBOOT
+          path: EBOOT.PBP
